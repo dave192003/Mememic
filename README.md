@@ -1,3 +1,6 @@
+<img width="1536" height="1024" alt="image" src="https://github.com/user-attachments/assets/16ff7bf0-ffcf-49b9-be7a-2de0aedd35e1" />
+
+
 # Mememic
 
 **Say the meme. Match the line. Become the meme.**
