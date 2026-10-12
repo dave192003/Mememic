@@ -1,0 +1,153 @@
+.cf {
+  --mascot-size: clamp(20px, 20vw, 20px);
+  --eye-gap: 22px;
+  --eye-scale: 1;
+  --eye-x: 0px;
+  --eye-y: 0px;
+
+  position: relative;
+  width: var(--mascot-size);
+  pointer-events: none;
+  user-select: none;
+
+}
+
+/* Idle life even when the mouse is still */
+.cf-bob {
+  transform-origin: 50% 100%;
+  animation: cf-bob 3.6s ease-in-out infinite;
+}
+
+@keyframes cf-bob {
+  0%,
+  100% {
+    transform: translateY(0) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-7px) rotate(1.5deg);
+  }
+}
+
+/* Body container that the JS leans / nudges */
+.cf-body {
+  position: relative;
+  width: var(--mascot-size);
+  height: var(--mascot-size);
+  border-radius: 46% 46% 44% 44% / 52% 52% 46% 46%;
+  will-change: transform;
+}
+
+/* ---- Built-in creature ---- */
+.cf--builtin .cf-body {
+  background: radial-gradient(circle at 32% 26%, #f88e04, #f8aa19 55%, #f3e17b 100%);
+  box-shadow:
+    inset -8px -12px 24px rgba(0, 0, 0, 0.28),
+    inset 6px 8px 18px rgba(255, 255, 255, 0.22),
+    0 14px 30px rgba(0, 0, 0, 0.35);
+}
+
+.cf-ear {
+  position: absolute;
+  top: -7%;
+  width: 32%;
+  height: 32%;
+  z-index: -1;
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 30%, #ff8fc4, #c93d90 70%);
+}
+.cf-ear--left {
+  left: 7%;
+}
+
+.cf-ear--right {
+  right: 7%;
+}
+
+.cf-mouth {
+  position: absolute;
+  left: 50%;
+  top: 60%;
+  width: 34%;
+  height: 17%;
+  transform: translateX(-50%);
+  background: #59113f;
+  border-radius: 0 0 50% 50% / 0 0 100% 100%;
+  box-shadow: inset 0 5px 0 rgba(255, 255, 255, 0.16);
+}
+
+.cf-blush {
+  position: absolute;
+  top: 55%;
+  width: 17%;
+  height: 11%;
+  border-radius: 50%;
+  background: rgba(255, 120, 170, 0.5);
+  filter: blur(1.5px);
+}
+.cf-blush--left {
+  left: 12%;
+}
+.cf-blush--right {
+  right: 12%;
+}
+
+/* ---- Image mode ---- */
+.cf--image .cf-body {
+  overflow: hidden;
+  border-radius: 30%;
+  background: transparent;
+  box-shadow: 0 14px 30px rgba(0, 0, 0, 0.35);
+}
+
+.cf-img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: inherit;
+    background: transparent;
+}
+
+/* ---- Tracking eyes (used in both modes) ---- */
+.cf-eyes {
+  position: absolute;
+  left: 50%;
+  top: 32%;
+  display: flex;
+  gap: var(--eye-gap);
+  transform: translate(calc(-50% + var(--eye-x)), var(--eye-y)) scale(var(--eye-scale));
+}
+
+.cf-eye {
+  position: relative;
+  width: 30px;
+  height: 36px;
+  overflow: hidden;
+  border-radius: 50%;
+  background: #fff;
+  box-shadow:
+    inset 0 -3px 4px rgba(0, 0, 0, 0.16),
+    0 2px 4px rgba(0, 0, 0, 0.22);
+}
+
+.cf-pupil {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 16px;
+  height: 16px;
+  margin: -8px 0 0 -8px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 30%, #4a4a58, #14121c 72%);
+  will-change: transform;
+}
+
+.cf-glint {
+  position: absolute;
+  top: 3px;
+  left: 4px;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: #fff;
+}

@@ -1,6 +1,21 @@
 /* Global base styles for MemeMic */
 :root {
   color-scheme: dark;
+
+  /* ---- MemeMic poster palette ---- */
+  --mm-yellow: #ffe500;
+  --mm-white: #ffffff;
+  --mm-red: #ff2020;
+  --mm-blue: #1677ff;
+  --mm-bg: #0b0a0f;
+  --mm-ink: #0b0a0f;
+
+  /* ---- Font stacks (loaded via Google Fonts in index.html) ---- */
+  --font-logo: 'Bowlby One SC', 'Arial Black', sans-serif;
+  --font-display: 'Anton', 'Arial Narrow', 'Arial Black', sans-serif;
+  --font-comic: 'Bangers', 'Comic Sans MS', 'Arial Black', sans-serif;
+  --font-marker: 'Permanent Marker', 'Comic Sans MS', cursive;
+  --font-body: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
 }
 
 * {
@@ -16,10 +31,48 @@ body,
 }
 
 body {
-  font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-  background-color: #0b0b12;
-  color: #f5f5f7;
+  font-family: var(--font-body);
+  background-color: var(--mm-bg);
+  color: var(--mm-white);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   overflow-x: hidden;
+}
+
+/* ########################################################################## */
+/*                     SHARED TYPOGRAPHY EFFECTS                             */
+/* ########################################################################## */
+
+/* Yellow highlighter swipe behind an important word */
+.txt-highlight {
+  display: inline-block;
+  padding: 0 0.3em;
+  color: var(--mm-ink);
+  background-color: var(--mm-yellow);
+  border-radius: 3px;
+  box-shadow: 2px 2px 0 rgba(0, 0, 0, 0.55);
+  transform: rotate(-1.5deg);
+}
+
+/* Alternate tilt so repeated highlights don't look copy-pasted */
+.txt-highlight--tilt {
+  transform: rotate(1.5deg);
+}
+
+/* Marker-style paint-stroke underline */
+.txt-underline {
+  display: inline-block;
+  padding: 0 0.12em;
+  color: var(--mm-white);
+  background-image: linear-gradient(var(--mm-red), var(--mm-red));
+  background-repeat: no-repeat;
+  background-size: 100% 0.3em;
+  background-position: 0 92%;
+  transform: rotate(1deg);
+}
+
+/* Legible selection state in the signature yellow */
+::selection {
+  background-color: var(--mm-yellow);
+  color: var(--mm-ink);
 }

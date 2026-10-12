@@ -1,9 +1,10 @@
 import akinNaLisensiyaMo from '../../assets/images/memesPhilippines/akinNaLisensiyaMo.jpg';
 import anongKailanganKongGawin from '../../assets/images/memesPhilippines/anongKailanganKongGawin.jpg';
-import finishNa from '../../assets/images/memesPhilippines/finishNa.jpg';
+import finishNa from '../../assets/images/memesPhilippines/finishNa.png';
 import ohSiggee from '../../assets/images/memesPhilippines/ohSiggee.jpg';
 import memeImage from '../../assets/images/memesPhilippines/OIP (31).webp';
 import taposNaPo from '../../assets/images/memesPhilippines/taposNaPo.gif';
+import CursorFollower from '../../components/cursorFollower/cursorFollower';
 
 import './landingPage.css';
 
@@ -61,8 +62,11 @@ function LandingPage() {
   return (
     <div className="landing-page-main">
       <header className="landing-page__header">
-        <h1 className="landing-page__title  ">MemeMic</h1>
-        <p className="landing-page__subtitle">Say the meme. Match the line. Become the meme.</p>
+        <h1 className="landing-page__title">
+          <span className="landing-page__title-part landing-page__title-part--meme">Meme</span>
+          <span className="landing-page__title-part landing-page__title-part--mic">Mic</span>
+        </h1>
+        <p className="landing-page__subtitle">Say the <span className="txt-highlight">meme</span>. Match the <span className="txt-underline">line</span>. Become the <span className="txt-highlight txt-highlight--tilt">meme</span>.</p>
       </header>
 
       <section className="landing-page__marquee-stack" aria-label="Scrolling meme gallery">
@@ -75,6 +79,13 @@ function LandingPage() {
           />
         ))}
       </section>
+
+      {/* Cursor-following mascot, anchored to the upper-right */}
+      <CursorFollower
+        className="landing-page__mascot"
+        image={finishNa}
+        eyes={{ x: 6, y: -4, gap: 22, scale: 0.6 }}
+      />
 
       <button className = "proceed-button  fixed flex-centered flex">Start Mememicing</button>
     </div>
