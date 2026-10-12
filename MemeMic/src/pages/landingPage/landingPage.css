@@ -130,14 +130,14 @@
   transition: transform 0.1s ease;
   box-shadow: 0 10px 28px rgba(0, 0, 0, 0.4);
   outline: 1px solid rgba(255, 255, 255, 0.06);
-  opacity: 0.5;
+  opacity: 0.3;
 }
 .marquee__item:hover {
   transform: scale(1.1);
   animation: ease 0.4s;
   z-index: 999;
   border: 1px solid white;
-  opacity: 1;
+  opacity: 1
 }
 
 .marquee__item img {
