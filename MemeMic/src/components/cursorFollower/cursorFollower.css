@@ -1,7 +1,10 @@
 .cf {
-  --mascot-size: clamp(20px, 20vw, 20px);
-  --eye-gap: 22px;
-  --eye-scale: 1;
+  --mascot-size: clamp(20px, 40vw, 50px);
+  /* Eye metrics are percentages so they scale with the character/body size.
+     Defaults match the old fixed px values at a 100px-wide body:
+     gap 22px (22/82 of the 82px eye-row), scale 0.5. */
+  --eye-gap: 26.8%;
+  --eye-scale: 0.5;
   --eye-x: 0px;
   --eye-y: 0px;
 
@@ -31,8 +34,8 @@
 /* Body container that the JS leans / nudges */
 .cf-body {
   position: relative;
-  width: var(--mascot-size);
-  height: var(--mascot-size);
+  width: clamp(10px, 10vw, 150px);
+  height: clamp(50px, 20vw, 150px);
   border-radius: 46% 46% 44% 44% / 52% 52% 46% 46%;
   will-change: transform;
 }
@@ -109,19 +112,23 @@
 }
 
 /* ---- Tracking eyes (used in both modes) ---- */
+/* The whole eye row is a share of the character body, so every eye metric
+   below (size, gap, pupil, glint) adapts to the character/image size. */
 .cf-eyes {
   position: absolute;
   left: 50%;
   top: 32%;
+  width: 82%; /* 30 + 22 + 30 px on a 100px-wide body */
   display: flex;
+  justify-content: center;
   gap: var(--eye-gap);
   transform: translate(calc(-50% + var(--eye-x)), var(--eye-y)) scale(var(--eye-scale));
 }
 
 .cf-eye {
   position: relative;
-  width: 30px;
-  height: 36px;
+  width: 36.6%; /* of the eye row -> 30% of the body */
+  aspect-ratio: 5 / 6; /* was 30px x 36px */
   overflow: hidden;
   border-radius: 50%;
   background: #fff;
@@ -134,9 +141,9 @@
   position: absolute;
   left: 50%;
   top: 50%;
-  width: 16px;
-  height: 16px;
-  margin: -8px 0 0 -8px;
+  width: 53.33%; /* of the eye -> 16px on a 30px eye */
+  aspect-ratio: 1;
+  margin: -26.67% 0 0 -26.67%; /* half of the pupil, centred */
   border-radius: 50%;
   background: radial-gradient(circle at 35% 30%, #4a4a58, #14121c 72%);
   will-change: transform;
@@ -144,10 +151,10 @@
 
 .cf-glint {
   position: absolute;
-  top: 3px;
-  left: 4px;
-  width: 5px;
-  height: 5px;
+  top: 18.75%; /* of the pupil -> 3px on a 16px pupil */
+  left: 25%; /* 4px */
+  width: 31.25%; /* 5px */
+  height: 31.25%;
   border-radius: 50%;
   background: #fff;
 }

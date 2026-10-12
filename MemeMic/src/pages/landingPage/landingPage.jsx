@@ -4,6 +4,7 @@ import finishNa from '../../assets/images/memesPhilippines/finishNa.png';
 import ohSiggee from '../../assets/images/memesPhilippines/ohSiggee.jpg';
 import memeImage from '../../assets/images/memesPhilippines/OIP (31).webp';
 import taposNaPo from '../../assets/images/memesPhilippines/taposNaPo.gif';
+import { useState } from 'react';
 import CursorFollower from '../../components/cursorFollower/cursorFollower';
 
 import './landingPage.css';
@@ -59,8 +60,62 @@ function MarqueeRow({ direction, duration, items }) {
 }
 
 function LandingPage() {
+  const [menuOpen, setMenuOpen] = useState(false);
+  const closeMenu = () => setMenuOpen(false);
+
   return (
     <div className="landing-page-main">
+      {/* Comic-poster background: pure CSS decorations, always behind content */}
+      <div className="landing-page__decor" aria-hidden="true">
+        {/* Yellow halftone dots near the four corners */}
+        <span className="landing-decor__dots landing-decor__dots--tl" />
+        <span className="landing-decor__dots landing-decor__dots--tr" />
+        <span className="landing-decor__dots landing-decor__dots--bl" />
+        <span className="landing-decor__dots landing-decor__dots--br" />
+        {/* A pair of red + yellow comic paint strokes */}
+        <span className="landing-decor__stroke landing-decor__stroke--red-a" />
+        <span className="landing-decor__stroke landing-decor__stroke--yellow-a" />
+        {/* One subtle paint splash with droplets */}
+        <span className="landing-decor__splash landing-decor__splash--red-a" />
+        {/* Small decorative accents */}
+        <span className="landing-decor__spark landing-decor__spark--a" />
+        <span className="landing-decor__spark landing-decor__spark--b" />
+      </div>
+
+      {/* Top navigation bar: near-black with a solid yellow bottom divider */}
+      <nav className="landing-nav" aria-label="Main navigation">
+        <a className="landing-nav__logo" href="/">
+          <span className="landing-nav__logo-meme">MEME</span>
+          <span className="landing-nav__logo-mic">MIC</span>
+        </a>
+
+        <button
+          type="button"
+          className={`landing-nav__toggle${menuOpen ? ' is-open' : ''}`}
+          aria-expanded={menuOpen}
+          aria-controls="landing-nav-menu"
+          aria-label="Toggle navigation menu"
+          onClick={() => setMenuOpen((open) => !open)}
+        >
+          <span />
+          <span />
+          <span />
+        </button>
+
+        <ul id="landing-nav-menu" className={`landing-nav__menu${menuOpen ? ' is-open' : ''}`}>
+          <li>
+            <a className="landing-nav__link" href="#how-to-play" onClick={closeMenu}>
+              HOW TO PLAY
+            </a>
+          </li>
+          <li>
+            <a className="landing-nav__link" href="#about" onClick={closeMenu}>
+              ABOUT
+            </a>
+          </li>
+        </ul>
+      </nav>
+
       <header className="landing-page__header">
         <h1 className="landing-page__title">
           <span className="landing-page__title-part landing-page__title-part--meme">Meme</span>
@@ -80,14 +135,17 @@ function LandingPage() {
         ))}
       </section>
 
-      {/* Cursor-following mascot, anchored to the upper-right */}
+      {/* Cursor-following mascot pinned to the far-left edge of the page */}
       <CursorFollower
         className="landing-page__mascot"
         image={finishNa}
-        eyes={{ x: 6, y: -4, gap: 22, scale: 0.6 }}
+        eyes={{ x: 6, y: -4, scale: 0.6 }}
       />
 
-      <button className = "proceed-button  fixed flex-centered flex">Start Mememicing</button>
+      {/* Start CTA, centred at the bottom */}
+      <div className="landing-page__cta">
+        <button className="proceed-button flex-centered flex">Start Mememicing</button>
+      </div>
     </div>
   );
 }

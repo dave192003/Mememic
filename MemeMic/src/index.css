@@ -7,10 +7,11 @@
   --mm-white: #ffffff;
   --mm-red: #ff2020;
   --mm-blue: #1677ff;
-  --mm-bg: #0b0a0f;
-  --mm-ink: #0b0a0f;
+  --mm-bg: #09080f; /* deep near-black page background */
+  --mm-surface: #15131d; /* secondary dark surface (menus, panels) */
+  --mm-ink: #09080f;
 
-  /* ---- Font stacks (loaded via Google Fonts in index.html) ---- */
+  /* Font stacks (loaded via Google Fonts in index.html)  */
   --font-logo: 'Bowlby One SC', 'Arial Black', sans-serif;
   --font-display: 'Anton', 'Arial Narrow', 'Arial Black', sans-serif;
   --font-comic: 'Bangers', 'Comic Sans MS', 'Arial Black', sans-serif;

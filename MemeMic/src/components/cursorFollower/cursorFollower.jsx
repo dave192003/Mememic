@@ -1,8 +1,8 @@
 import { useEffect, useRef } from 'react';
 import './cursorFollower.css';
 
-// How far (in px / deg) the character reacts toward the cursor.
-const MAX_PUPIL = 6; // pupil travel inside the eye
+// How far (in % / px / deg) the character reacts toward the cursor.
+const MAX_PUPIL = 37.5; // pupil travel, as % of the pupil size (scales with the eyes)
 const MAX_SHIFT = 6; // whole-body nudge toward the cursor
 const MAX_LEAN = 10; // body tilt 
 
@@ -41,11 +41,12 @@ function CursorFollower({ image, size = 150, eyes, className = '', style }) {
 
       if (eyeL && pupL) {
         const { ux, uy } = unitToward(mouse, eyeL.getBoundingClientRect());
-        pupL.style.transform = `translate(${(ux * MAX_PUPIL).toFixed(2)}px, ${(uy * MAX_PUPIL).toFixed(2)}px)`;
+        // % translate scales with the pupil, so it follows the eye/character size.
+        pupL.style.transform = `translate(${(ux * MAX_PUPIL).toFixed(2)}%, ${(uy * MAX_PUPIL).toFixed(2)}%)`;
       }
       if (eyeR && pupR) {
         const { ux, uy } = unitToward(mouse, eyeR.getBoundingClientRect());
-        pupR.style.transform = `translate(${(ux * MAX_PUPIL).toFixed(2)}px, ${(uy * MAX_PUPIL).toFixed(2)}px)`;
+        pupR.style.transform = `translate(${(ux * MAX_PUPIL).toFixed(2)}%, ${(uy * MAX_PUPIL).toFixed(2)}%)`;
       }
       if (body) {
         const { ux, uy } = unitToward(mouse, body.getBoundingClientRect());

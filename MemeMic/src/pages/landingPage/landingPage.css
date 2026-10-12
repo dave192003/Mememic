@@ -1,17 +1,17 @@
 .landing-page-main {
   position: relative;
+  z-index: 0; /* stacking context so decorations (-1) stay above the page background */
   min-height: 100vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
   gap: 2.5rem;
-  padding: 3rem 0;
+  padding: clamp(4.75rem, 9vh, 6rem) 0 3rem; /* clear the fixed navbar */
   background:
     radial-gradient(760px 420px at 50% 4%, rgba(255, 229, 0, 0.08), transparent 70%),
     var(--mm-bg);
   overflow: hidden;
-  border: 4px solid #FFE500;
-    box-shadow: inset 0 0 0 4px #FF2020;
+
 }
 
 .landing-page__header {
@@ -31,8 +31,17 @@
   color: var(--mm-white);
   -webkit-text-stroke: clamp(2px, 0.5vw, 5px) var(--mm-ink);
   paint-order: stroke fill;
+  /* Yellow comic border on the text itself (no box around the title) */
   text-shadow:
     0.04em 0.05em 0 rgba(0, 0, 0, 0.9),
+    0.07em 0 0 var(--mm-yellow),
+    -0.07em 0 0 var(--mm-yellow),
+    0 0.07em 0 var(--mm-yellow),
+    0 -0.07em 0 var(--mm-yellow),
+    0.05em 0.05em 0 var(--mm-yellow),
+    -0.05em 0.05em 0 var(--mm-yellow),
+    0.05em -0.05em 0 var(--mm-yellow),
+    -0.05em -0.05em 0 var(--mm-yellow),
     0 0 0.45em rgba(255, 229, 0, 0.25);
 }
 
@@ -48,6 +57,18 @@
 .landing-page__title-part--mic {
   color: var(--mm-yellow);
   transform: rotate(1.5deg);
+  /* White comic border on the "Mic" word (overrides the inherited yellow ring) */
+  text-shadow:
+    0.04em 0.05em 0 rgba(0, 0, 0, 0.9),
+    0.07em 0 0 var(--mm-white),
+    -0.07em 0 0 var(--mm-white),
+    0 0.07em 0 var(--mm-white),
+    0 -0.07em 0 var(--mm-white),
+    0.05em 0.05em 0 var(--mm-white),
+    -0.05em 0.05em 0 var(--mm-white),
+    0.05em -0.05em 0 var(--mm-white),
+    -0.05em -0.05em 0 var(--mm-white),
+    0 0 0.45em rgba(255, 229, 0, 0.25);
 }
 
 /*  Hand-written tagline */
@@ -66,11 +87,24 @@
   gap: 0.5rem;
 }
 
-/*  Cursor-follower mascot: anchored to the container's upper-right corner */
-.landing-page__mascot {
-  position: absolute;
-  top: 1.5rem;
-  right: 2rem;
+/*  Fixed CTA cluster: mascot stands to the left of the Start button */
+.landing-page__cta {
+  position: fixed;
+  left: 50%;
+  bottom: 10vh;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  z-index: 40;
+}
+
+/*  Cursor-follower mascot: pinned to the far-left edge of the page,
+    feet on the same line as the Start button */
+.landing-page-main .landing-page__mascot {
+  position: fixed;
+  left: clamp(0.5rem, 2vw, 2rem);
+  bottom: 10vh;
+  width: fit-content; /* shrink-wrap the character instead of --mascot-size */
   z-index: 40;
   pointer-events: none;
 }
@@ -169,10 +203,10 @@
 /* ---- CTA: loud red sticker button ---- */
 .proceed-button {
     /* position: absolute; */
-    padding: 0.9em 2em;
+    padding: 0.9em 2rem;
     align-self: center;
     bottom: 10vh;
-    border-radius: 16px;
+    border-radius: 50px;
     border: 5px solid var(--mm-yellow);
     background: var(--mm-red);
     font-family: var(--font-display);
@@ -245,5 +279,329 @@
     .proceed-button::before {
         transition: none;
     }
+}
+
+
+/* TOP NAVBAR */
+
+.landing-nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 0.65rem clamp(1rem, 4vw, 2.5rem);
+  background: var(--mm-bg);
+  border-bottom: 2px solid var(--mm-yellow);
+}
+
+.landing-nav__logo {
+  display: inline-flex;
+  align-items: baseline;
+  font-family: var(--font-logo);
+  font-size: clamp(1.1rem, 2.4vw, 1.5rem);
+  line-height: 1;
+  letter-spacing: 0.02em;
+  text-decoration: none;
+  color: var(--mm-white);
+  text-shadow: 2px 2px 0 rgba(0, 0, 0, 0.85);
+  transform: rotate(-1.5deg);
+}
+
+.landing-nav__logo-meme {
+  color: var(--mm-white);
+}
+
+.landing-nav__logo-mic {
+  color: var(--mm-yellow);
+}
+
+.landing-nav__logo:focus-visible {
+  outline: 2px solid var(--mm-blue);
+  outline-offset: 4px;
+  border-radius: 4px;
+}
+
+.landing-nav__menu {
+  display: flex;
+  align-items: center;
+  gap: clamp(1rem, 3vw, 2.25rem);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.landing-nav__link {
+  display: inline-block;
+  font-family: var(--font-display);
+  font-size: clamp(0.95rem, 1.6vw, 1.15rem);
+  font-weight: 400;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--mm-white);
+  text-decoration: none;
+  padding: 0.35rem 0.1rem;
+  transition: color 0.2s ease, text-shadow 0.2s ease, background-color 0.2s ease;
+}
+
+.landing-nav__link:hover,
+.landing-nav__link:focus-visible {
+  color: var(--mm-yellow);
+  text-shadow: 0 0 14px rgba(255, 229, 0, 0.55);
+}
+
+.landing-nav__link:focus-visible {
+  outline: 2px solid var(--mm-blue);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+.landing-nav__toggle {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  gap: 5px;
+  padding: 0.55rem 0.6rem;
+  background: transparent;
+  border: 2px solid var(--mm-yellow);
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.landing-nav__toggle span {
+  display: block;
+  width: 22px;
+  height: 3px;
+  border-radius: 2px;
+  background: var(--mm-white);
+  transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
+.landing-nav__toggle.is-open span:nth-child(1) {
+  transform: translateY(8px) rotate(45deg);
+}
+
+.landing-nav__toggle.is-open span:nth-child(2) {
+  opacity: 0;
+}
+
+.landing-nav__toggle.is-open span:nth-child(3) {
+  transform: translateY(-8px) rotate(-45deg);
+}
+
+.landing-nav__toggle:focus-visible {
+  outline: 2px solid var(--mm-blue);
+  outline-offset: 2px;
+}
+
+/* COMIC-POSTER BACKGROUND DECORATIONS   */
+
+/* Sits behind all content and never intercepts pointer input */
+.landing-page__decor {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+/* Vignette keeps the centre dark and clean so content stays readable */
+.landing-page__decor::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    1100px 640px at 50% 45%,
+    transparent 30%,
+    rgba(9, 8, 15, 0.55) 72%,
+    rgba(9, 8, 15, 0.9) 100%
+  );
+}
+
+/* Printed-comic grain / distressed texture */
+.landing-page__decor::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  opacity: 0.045;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23g)'/%3E%3C/svg%3E");
+}
+
+/* ---- Yellow halftone dot clusters near the corners ---- */
+.landing-decor__dots {
+  position: absolute;
+  width: clamp(140px, 18vw, 260px);
+  height: clamp(140px, 18vw, 260px);
+  background-image: radial-gradient(circle, rgba(255, 229, 0, 0.45) 1.3px, rgba(255, 229, 0, 0) 1.7px);
+  background-size: 15px 15px;
+  opacity: 0.3;
+}
+
+.landing-decor__dots--tl {
+  top: 4rem;
+  left: 0;
+  -webkit-mask-image: radial-gradient(circle at 20% 20%, #000 6%, transparent 72%);
+  mask-image: radial-gradient(circle at 20% 20%, #000 6%, transparent 72%);
+}
+
+.landing-decor__dots--tr {
+  top: 4rem;
+  right: 0;
+  -webkit-mask-image: radial-gradient(circle at 80% 20%, #000 6%, transparent 72%);
+  mask-image: radial-gradient(circle at 80% 20%, #000 6%, transparent 72%);
+}
+
+.landing-decor__dots--bl {
+  bottom: 0;
+  left: 0;
+  -webkit-mask-image: radial-gradient(circle at 20% 80%, #000 6%, transparent 72%);
+  mask-image: radial-gradient(circle at 20% 80%, #000 6%, transparent 72%);
+}
+
+.landing-decor__dots--br {
+  bottom: 0;
+  right: 0;
+  -webkit-mask-image: radial-gradient(circle at 80% 80%, #000 6%, transparent 72%);
+  mask-image: radial-gradient(circle at 80% 80%, #000 6%, transparent 72%);
+}
+
+/* ---- Red + yellow comic paint strokes ---- */
+.landing-decor__stroke {
+  position: absolute;
+  width: clamp(130px, 16vw, 240px);
+  height: clamp(10px, 1.5vw, 20px);
+  border-radius: 999px;
+  opacity: 0.3;
+}
+
+/* Second, shorter parallel stroke under each main stroke */
+.landing-decor__stroke::after {
+  content: '';
+  position: absolute;
+  left: 10%;
+  right: -4%;
+  top: 170%;
+  height: 50%;
+  border-radius: 999px;
+  background: inherit;
+  opacity: 0.5;
+}
+
+.landing-decor__stroke--red-a {
+  top: 13%;
+  left: 3%;
+  transform: rotate(-28deg);
+  background: linear-gradient(90deg, rgba(255, 32, 32, 0), var(--mm-red) 25%, var(--mm-red) 75%, rgba(255, 32, 32, 0));
+}
+
+.landing-decor__stroke--yellow-a {
+  top: 32%;
+  right: -2%;
+  transform: rotate(34deg);
+  background: linear-gradient(90deg, rgba(255, 229, 0, 0), var(--mm-yellow) 25%, var(--mm-yellow) 75%, rgba(255, 229, 0, 0));
+}
+
+/* ---- Paint splashes with scattered droplets ---- */
+.landing-decor__splash {
+  position: absolute;
+  width: clamp(36px, 5vw, 66px);
+  height: clamp(28px, 4vw, 52px);
+  background: currentColor;
+  border-radius: 62% 38% 55% 45% / 48% 62% 38% 52%;
+  opacity: 0.26;
+  box-shadow:
+    46px 22px 0 -15px currentColor,
+    -40px 30px 0 -17px currentColor;
+}
+
+.landing-decor__splash--red-a {
+  top: 20%;
+  right: 11%;
+  color: var(--mm-red);
+  transform: rotate(-18deg);
+}
+
+/* ---- Small decorative "+" accents ---- */
+.landing-decor__spark {
+  position: absolute;
+  width: 14px;
+  height: 14px;
+  opacity: 0.45;
+  background:
+    linear-gradient(currentColor, currentColor) center / 100% 3px no-repeat,
+    linear-gradient(currentColor, currentColor) center / 3px 100% no-repeat;
+}
+
+.landing-decor__spark--a {
+  top: 24%;
+  left: 8%;
+  color: var(--mm-yellow);
+  transform: rotate(12deg);
+}
+
+.landing-decor__spark--b {
+  top: 38%;
+  right: 9%;
+  width: 11px;
+  height: 11px;
+  color: var(--mm-red);
+  transform: rotate(-18deg);
+}
+
+/* ########################################################################## */
+/*                           RESPONSIVE                                       */
+/* ########################################################################## */
+
+/* Tablet (768px–1199px): reduce navbar padding and logo size */
+@media (max-width: 1199px) {
+  .landing-nav {
+    padding: 0.55rem clamp(0.9rem, 3vw, 1.5rem);
+  }
+
+  .landing-nav__logo {
+    font-size: clamp(1rem, 2.2vw, 1.3rem);
+  }
+}
+
+/* Mobile (<768px): collapse the links into an accessible hamburger menu */
+@media (max-width: 767px) {
+  .landing-nav__toggle {
+    display: flex;
+  }
+
+  .landing-nav__menu {
+    position: absolute;
+    top: calc(100% + 2px);
+    left: 1rem;
+    right: 1rem;
+    display: none;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0.15rem;
+    padding: 0.45rem;
+    background: var(--mm-surface);
+    border: 2px solid var(--mm-yellow);
+    border-radius: 12px;
+    box-shadow: 0 16px 34px rgba(0, 0, 0, 0.55);
+  }
+
+  .landing-nav__menu.is-open {
+    display: flex;
+  }
+
+  .landing-nav__link {
+    display: block;
+    padding: 0.75rem 1rem;
+    text-align: center;
+    border-radius: 8px;
+  }
+
+  .landing-nav__link:hover {
+    background: rgba(255, 229, 0, 0.12);
+  }
 }
 
