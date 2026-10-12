@@ -1,0 +1,140 @@
+.flex-centered {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.flex-justify-center {
+    justify-content: center;
+}
+
+.flex-align-center {
+    align-items: center;
+}
+
+.flex-between {
+    display: flex;
+    justify-content: space-between;
+}
+
+.flex-around {
+    display: flex;
+    justify-content: space-around;
+}
+
+.flex-evenly {
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.flex {
+    display: flex;
+}
+
+.flex-row {
+    flex-direction: row;
+}
+
+.flex-column {
+    flex-direction: column;
+}
+
+.flex-start {
+    display: flex;
+    justify-content: start;
+}
+
+.flex-end {
+    display: flex;
+    justify-content: end;
+}
+
+.flex-wrap {
+    flex-wrap: wrap;
+}
+
+.flex-nowrap{
+    flex-wrap: nowrap;
+}
+
+.grid-centered {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+}
+
+.block{
+    display: block;
+}
+
+/* ########################################################################## */
+/*                           POSITIONING                                           */
+/* ########################################################################## */
+
+.fixed {
+    position: fixed;
+}
+
+.sticked {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    /* nasa ibabaw siya ng feed kapag nagscroll */
+    background-color: var(--background-primary-color);
+    overflow: visible;
+}
+
+.absolute {
+    position: absolute;
+}
+
+.relative {
+    position: relative;
+}
+
+/* ########################################################################## */
+/*                           WIDTH NAD HEIGHT                                          */
+/* ########################################################################## */
+
+.full-width{
+    width: 100%;
+}
+
+.half-width{
+    width: 50%;
+}
+
+.full-height{
+    height: 100%;
+}
+
+.height-auto{
+    height: auto;
+}
+
+/* ########################################################################## */
+/*                           TEXT ALIGNMENT                                           */
+/* ########################################################################## */
+.text-centered{
+    text-align: center;
+}
+
+.text-start{
+    text-align: start;
+}
+
+.text-end{
+    text-align: end;
+}
+
+.no-decoration-text{
+    text-decoration: none;
+}
+
+.nowrap {
+    white-space: nowrap;
+}
+
+.break-word {
+    overflow-wrap: break-word;
+    white-space: normal;
+}
