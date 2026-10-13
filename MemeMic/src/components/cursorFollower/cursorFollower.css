@@ -1,8 +1,5 @@
 .cf {
   --mascot-size: clamp(20px, 40vw, 50px);
-  /* Eye metrics are percentages so they scale with the character/body size.
-     Defaults match the old fixed px values at a 100px-wide body:
-     gap 22px (22/82 of the 82px eye-row), scale 0.5. */
   --eye-gap: 26.8%;
   --eye-scale: 0.5;
   --eye-x: 0px;
@@ -34,64 +31,19 @@
 /* Body container that the JS leans / nudges */
 .cf-body {
   position: relative;
-  width: clamp(10px, 10vw, 150px);
+  width: clamp(50px, 20vw, 150px);
   height: clamp(50px, 20vw, 150px);
   border-radius: 46% 46% 44% 44% / 52% 52% 46% 46%;
   will-change: transform;
 }
 
-/* ---- Built-in creature ---- */
+/* Built-in creature  */
 .cf--builtin .cf-body {
   background: radial-gradient(circle at 32% 26%, #f88e04, #f8aa19 55%, #f3e17b 100%);
   box-shadow:
     inset -8px -12px 24px rgba(0, 0, 0, 0.28),
     inset 6px 8px 18px rgba(255, 255, 255, 0.22),
     0 14px 30px rgba(0, 0, 0, 0.35);
-}
-
-.cf-ear {
-  position: absolute;
-  top: -7%;
-  width: 32%;
-  height: 32%;
-  z-index: -1;
-  border-radius: 50%;
-  background: radial-gradient(circle at 35% 30%, #ff8fc4, #c93d90 70%);
-}
-.cf-ear--left {
-  left: 7%;
-}
-
-.cf-ear--right {
-  right: 7%;
-}
-
-.cf-mouth {
-  position: absolute;
-  left: 50%;
-  top: 60%;
-  width: 34%;
-  height: 17%;
-  transform: translateX(-50%);
-  background: #59113f;
-  border-radius: 0 0 50% 50% / 0 0 100% 100%;
-  box-shadow: inset 0 5px 0 rgba(255, 255, 255, 0.16);
-}
-
-.cf-blush {
-  position: absolute;
-  top: 55%;
-  width: 17%;
-  height: 11%;
-  border-radius: 50%;
-  background: rgba(255, 120, 170, 0.5);
-  filter: blur(1.5px);
-}
-.cf-blush--left {
-  left: 12%;
-}
-.cf-blush--right {
-  right: 12%;
 }
 
 /* ---- Image mode ---- */
@@ -108,17 +60,15 @@
   height: 100%;
   object-fit: cover;
   border-radius: inherit;
-    background: transparent;
+  background: transparent;
 }
 
 /* ---- Tracking eyes (used in both modes) ---- */
-/* The whole eye row is a share of the character body, so every eye metric
-   below (size, gap, pupil, glint) adapts to the character/image size. */
 .cf-eyes {
   position: absolute;
   left: 50%;
   top: 32%;
-  width: 82%; /* 30 + 22 + 30 px on a 100px-wide body */
+  width: 60%; /* 30 + 22 + 30 px on a 100px-wide body */
   display: flex;
   justify-content: center;
   gap: var(--eye-gap);

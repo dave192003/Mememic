@@ -2,7 +2,7 @@ import { useEffect, useRef } from 'react';
 import './cursorFollower.css';
 
 // How far (in % / px / deg) the character reacts toward the cursor.
-const MAX_PUPIL = 37.5; // pupil travel, as % of the pupil size (scales with the eyes)
+const MAX_PUPIL = 37; // pupil travel, as % of the pupil size (scales with the eyes)
 const MAX_SHIFT = 6; // whole-body nudge toward the cursor
 const MAX_LEAN = 10; // body tilt 
 
