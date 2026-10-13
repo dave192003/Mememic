@@ -1,6 +1,6 @@
 import akinNaLisensiyaMo from '../../assets/images/memesPhilippines/akinNaLisensiyaMo.jpg';
 import anongKailanganKongGawin from '../../assets/images/memesPhilippines/anongKailanganKongGawin.jpg';
-import finishNa from '../../assets/images/memesPhilippines/finishNa.png';
+import finishNa from '../../assets/images/memesPhilippines/finishNa.jpg';
 import ohSiggee from '../../assets/images/memesPhilippines/ohSiggee.jpg';
 import memeImage from '../../assets/images/memesPhilippines/OIP (31).webp';
 import taposNaPo from '../../assets/images/memesPhilippines/taposNaPo.gif';
