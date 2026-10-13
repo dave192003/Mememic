@@ -6,23 +6,26 @@ import memeImage from '../../assets/images/memesPhilippines/OIP (31).webp';
 import taposNaPo from '../../assets/images/memesPhilippines/taposNaPo.gif';
 import { useState } from 'react';
 import CursorFollower from '../../components/cursorFollower/cursorFollower';
-
+import emotionalDamage from "../../assets/videos/emotionalDamage.mp4";
+import whoAreYou from "../../assets/videos/whoAreYou.mp4";
 import './landingPage.css';
 
 // Every meme image from src/assets/images/memesPhilippines
 const images = [
-  { src: akinNaLisensiyaMo },
-  { src: anongKailanganKongGawin },
-  { src: finishNa },
-  { src: ohSiggee },
-  { src: taposNaPo },
-  { src: memeImage},
+  { src: akinNaLisensiyaMo, type: 'image' },
+  { src: anongKailanganKongGawin, type: 'image' },
+  { src: finishNa, type: 'image' },
+  { src: ohSiggee, type: 'image' },
+  { src: taposNaPo, type: 'image' },
+  { src: memeImage, type: 'image' },
+  { src: emotionalDamage, type: 'video' },
+  { src: whoAreYou, type: 'video' }
 ];
 
 // Directions alternate: left, right, left, right, left.
 // `items` are indices into the `images` array so all memes are used.
 const rows = [
-  { direction: 'left', duration: 38, items: [0, 1, 2, 3] },
+  { direction: 'left', duration: 38, items: [0, 1, 2, 3,4,5,6,7] },
   { direction: 'right', duration: 46, items: [4, 5, 0, 1] },
   { direction: 'left', duration: 42, items: [2, 3, 4, 5] },
   { direction: 'right', duration: 50, items: [0, 1, 2, 3, 4, 5] },
@@ -48,7 +51,27 @@ function MarqueeRow({ direction, duration, items }) {
           <div className="marquee__group" key={group} aria-hidden={group === 1}>
             {sequence.map((img, index) => (
               <figure className="marquee__item" key={`${group}-${index}`}>
-                <img src={img.src} alt={img.alt} loading="lazy" draggable="false" />
+                {img.type === 'video' ? (
+                  <video
+                    src={img.src}
+                    muted
+                    playsInline
+                    preload="metadata"
+                    onMouseEnter ={(e) => e.currentTarget.play()}
+                    onMouseLeave = {(e) => { e.currentTarget.pause();
+                      e.currentTarget.currentTime = 0;
+                    }}
+                    aria-label={img.alt}
+                    draggable="false"
+                  />
+                ) : (
+                  <img
+                    src={img.src}
+                    alt={img.alt}
+                    loading="lazy"
+                    draggable="false"
+                  />
+                )}
                 <figcaption>{img.alt}</figcaption>
               </figure>
             ))}

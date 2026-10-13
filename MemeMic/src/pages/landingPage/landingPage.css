@@ -174,7 +174,8 @@
   opacity: 1
 }
 
-.marquee__item img {
+.marquee__item img ,
+.marquee__item video {
   display: block;
   width: 200px;
   height: 130px;
