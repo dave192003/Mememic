@@ -21,7 +21,7 @@
 }
 
 
-/* ---- "MemeMic" sticker wordmark: white + electric yellow, thick black outline ---- */
+/* "MemeMic" */
 .landing-page__title {
   font-family: var(--font-logo);
   font-size: clamp(2.9rem, 13vw, 7.5rem);
@@ -31,7 +31,6 @@
   color: var(--mm-white);
   -webkit-text-stroke: clamp(2px, 0.5vw, 5px) var(--mm-ink);
   paint-order: stroke fill;
-  /* Yellow comic border on the text itself (no box around the title) */
   text-shadow:
     0.04em 0.05em 0 rgba(0, 0, 0, 0.9),
     0.07em 0 0 var(--mm-yellow),
@@ -50,14 +49,13 @@
 }
 
 .landing-page__title-part--meme {
-  color: var(--mm-white);
+  color: var(--mm-red);
   transform: rotate(-1.5deg);
 }
 
 .landing-page__title-part--mic {
   color: var(--mm-yellow);
   transform: rotate(1.5deg);
-  /* White comic border on the "Mic" word (overrides the inherited yellow ring) */
   text-shadow:
     0.04em 0.05em 0 rgba(0, 0, 0, 0.9),
     0.07em 0 0 var(--mm-white),
@@ -87,6 +85,19 @@
   gap: 0.5rem;
 }
 
+/*  Bottom vignette */
+.landing-page-main::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: clamp(9rem, 24vh, 15rem);
+  background: linear-gradient(to top, var(--mm-bg), rgba(9, 8, 15, 0.72) 45%, transparent);
+  pointer-events: none;
+  z-index: 20;
+}
+
 /*  Fixed CTA cluster: mascot stands to the left of the Start button */
 .landing-page__cta {
   position: fixed;
@@ -98,22 +109,19 @@
   z-index: 40;
 }
 
-/*  Cursor-follower mascot: pinned to the far-left edge of the page,
-    feet on the same line as the Start button */
 .landing-page-main .landing-page__mascot {
   position: fixed;
-  left: clamp(0.5rem, 2vw, 2rem);
+  left: clamp(0.5rem, 6vw, 10rem);
   bottom: 10vh;
   width: fit-content; /* shrink-wrap the character instead of --mascot-size */
   z-index: 40;
   pointer-events: none;
 }
 
-/* ---- Marquee layer ---- */
+/*  Marquee layer */
 .marquee {
   width: 100%;
   overflow: hidden;
-  /* Soft fade on the left/right edges */
   -webkit-mask-image: linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent);
   mask-image: linear-gradient(90deg, transparent, #000 20%, #000 94%, transparent);
 }
@@ -206,7 +214,7 @@
     /* position: absolute; */
     padding: 0.9em 2rem;
     align-self: center;
-    bottom: 10vh;
+    bottom: 5vh !important;
     border-radius: 50px;
     border: 5px solid var(--mm-yellow);
     background: var(--mm-red);
