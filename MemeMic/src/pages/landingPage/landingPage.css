@@ -93,7 +93,7 @@
   right: 0;
   bottom: 0;
   height: clamp(9rem, 24vh, 15rem);
-  background: linear-gradient(to top, var(--mm-bg), rgba(9, 8, 15, 0.72) 45%, transparent);
+  background: linear-gradient(to top, var(--mm-bg), rgba(9, 8, 15, 0.72) 75%, transparent);
   pointer-events: none;
   z-index: 20;
 }
