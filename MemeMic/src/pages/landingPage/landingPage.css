@@ -9,7 +9,7 @@
   padding: clamp(4.75rem, 9vh, 6rem) 0 3rem; /* clear the fixed navbar */
   background:
     radial-gradient(760px 420px at 50% 4%, rgba(255, 229, 0, 0.08), transparent 70%),
-    var(--mm-bg);
+    rgb(36, 35, 35);
   overflow: hidden;
 
 }

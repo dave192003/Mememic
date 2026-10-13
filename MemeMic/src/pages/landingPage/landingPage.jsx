@@ -57,7 +57,7 @@ function MarqueeRow({ direction, duration, items }) {
                     muted
                     playsInline
                     preload="metadata"
-                    onMouseEnter ={(e) => e.currentTarget.play()}
+                    onMouseEnter ={(e) => {e.currentTarget.play().catch(() => {})}}
                     onMouseLeave = {(e) => { e.currentTarget.pause();
                       e.currentTarget.currentTime = 0;
                     }}
