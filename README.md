@@ -98,8 +98,6 @@ The initial scoring approach focuses on **text accuracy, pitch accuracy, Timing 
 7. Display the result to the player.
 
 
-*The structure above is a suggested organization. Keep it aligned with the actual files in your repository.*
-
 ## Privacy and Security
 
 - Microphone access should only be requested when needed for gameplay.
