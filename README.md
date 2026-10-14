@@ -16,7 +16,7 @@ From iconic Pinoy meme lines to unforgettable internet moments, Mememic turns me
 -  **Global Memes** — Challenge yourself with popular memes from around the world.
 -  **Accuracy Scoring** — Get a score based on how closely your spoken line matches the original quote.
 -  **Meme Challenges** — Test your ability to remember and deliver memorable lines.
--  **Competitive Gameplay** — Build toward leaderboards and score-based challenges as the project evolves.
+-  **Competitive Gameplay** — Build toward leaderboards and score-based challenges as the project evolves..
 
 ## Tech Stack
 
