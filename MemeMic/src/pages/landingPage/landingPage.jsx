@@ -4,11 +4,14 @@ import finishNa from '../../assets/images/memesPhilippines/finishNa.jpg';
 import ohSiggee from '../../assets/images/memesPhilippines/ohSiggee.jpg';
 import memeImage from '../../assets/images/memesPhilippines/OIP (31).webp';
 import taposNaPo from '../../assets/images/memesPhilippines/taposNaPo.gif';
-import { useState } from 'react';
 import CursorFollower from '../../components/cursorFollower/cursorFollower';
+import Navbar from '../../components/navbar/navbar';
 import emotionalDamage from "../../assets/videos/emotionalDamage.mp4";
 import whoAreYou from "../../assets/videos/whoAreYou.mp4";
 import './landingPage.css';
+import {useNavigate} from "react-router-dom";
+
+
 
 // Every meme image from src/assets/images/memesPhilippines
 const images = [
@@ -82,10 +85,10 @@ function MarqueeRow({ direction, duration, items }) {
   );
 }
 
-function LandingPage() {
-  const [menuOpen, setMenuOpen] = useState(false);
-  const closeMenu = () => setMenuOpen(false);
 
+
+function LandingPage() {
+  const navigate = useNavigate();
   return (
     <div className="landing-page-main">
       {/* Comic-poster background: pure CSS decorations, always behind content */}
@@ -105,39 +108,8 @@ function LandingPage() {
         <span className="landing-decor__spark landing-decor__spark--b" />
       </div>
 
-      {/* Top navigation bar: near-black with a solid yellow bottom divider */}
-      <nav className="landing-nav" aria-label="Main navigation">
-        <a className="landing-nav__logo" href="/">
-          <span className="landing-nav__logo-meme">MEME</span>
-          <span className="landing-nav__logo-mic">MIC</span>
-        </a>
-
-        <button
-          type="button"
-          className={`landing-nav__toggle${menuOpen ? ' is-open' : ''}`}
-          aria-expanded={menuOpen}
-          aria-controls="landing-nav-menu"
-          aria-label="Toggle navigation menu"
-          onClick={() => setMenuOpen((open) => !open)}
-        >
-          <span />
-          <span />
-          <span />
-        </button>
-
-        <ul id="landing-nav-menu" className={`landing-nav__menu${menuOpen ? ' is-open' : ''}`}>
-          <li>
-            <a className="landing-nav__link" href="#how-to-play" onClick={closeMenu}>
-              HOW TO PLAY
-            </a>
-          </li>
-          <li>
-            <a className="landing-nav__link" href="#about" onClick={closeMenu}>
-              ABOUT
-            </a>
-          </li>
-        </ul>
-      </nav>
+      {/* Top navigation bar */}
+      <Navbar />
 
       <header className="landing-page__header">
         <h1 className="landing-page__title">
@@ -167,7 +139,7 @@ function LandingPage() {
 
       {/* Start CTA, centred at the bottom */}
       <div className="landing-page__cta">
-        <button className="proceed-button flex-centered flex">Start Mememicing</button>
+        <button className="proceed-button flex-centered flex" onClick  = {() => navigate("/home")}>Start Mememicing</button>
       </div>
     </div>
   );

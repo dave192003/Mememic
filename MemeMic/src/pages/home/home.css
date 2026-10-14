@@ -1,0 +1,68 @@
+.home-main {
+  position: relative;
+  z-index: 0; /* stacking context so decorations (-1) stay above the page background */
+  min-height: 100vh;
+  padding: clamp(4.75rem, 9vh, 6rem) 0 3rem; /* clear the fixed navbar */
+  background:
+    radial-gradient(760px 420px at 50% 4%, rgba(255, 229, 0, 0.08), transparent 70%),
+    rgb(36, 35, 35);
+}
+
+.content-page{
+  padding: 1rem;
+  
+}
+
+.top-part{
+  padding: 1rem;
+}
+
+/* top left part */
+.top-left-part{
+  border: 1px solid white;
+}
+
+/* Match the landing page header font style (comic title look) */
+.home-header,
+.home-header-2 {
+  font-family: var(--font-logo);
+  font-weight: 400;
+  line-height: 0.98;
+  letter-spacing: 0.01em;
+  color: white;
+  -webkit-text-stroke: clamp(1px, 0.3vw, 3px) var(--mm-ink);
+  paint-order: stroke fill;
+  text-shadow:
+    0.04em 0.05em 0 rgba(0, 0, 0, 0.9),
+    0.07em 0 0 var(--mm-yellow),
+    -0.07em 0 0 var(--mm-yellow),
+    0 0.07em 0 var(--mm-yellow),
+    0 -0.07em 0 var(--mm-yellow),
+    0.05em 0.05em 0 var(--mm-yellow),
+    -0.05em 0.05em 0 var(--mm-yellow),
+    0.05em -0.05em 0 var(--mm-yellow),
+    -0.05em -0.05em 0 var(--mm-yellow),
+    0 0 0.45em rgba(255, 229, 0, 0.25);
+}
+
+.top-left-part h2{
+  font-size: clamp(20px, 25vw, 30px);
+  margin: 1rem 0;
+}
+.top-left-part .home-header-2{
+  font-size: clamp(20px, 25vw, 40px);
+}
+
+.top-left-part span{
+  font-size: clamp(20px, 25vw, 40px);
+  color: var(--mm-red);
+}
+
+/* top right part */
+.top-right-part{
+  padding: 0.2rem;
+  width: auto;
+}
+.top-right-part video{
+  width: 20%;
+}

@@ -57,9 +57,9 @@
     flex-wrap: nowrap;
 }
 
-.grid-centered {
+.grid-centered-2 {
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-template-columns: 1fr 1fr ;
 }
 
 .block{
