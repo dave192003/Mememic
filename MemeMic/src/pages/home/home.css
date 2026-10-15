@@ -2,6 +2,8 @@
   position: relative;
   z-index: 0; /* stacking context so decorations (-1) stay above the page background */
   min-height: 100vh;
+  display: flex;
+  flex-direction: column;
   padding: clamp(4.75rem, 9vh, 6rem) 0 3rem; /* clear the fixed navbar */
   background:
     radial-gradient(760px 420px at 50% 4%, rgba(255, 229, 0, 0.08), transparent 70%),
@@ -9,8 +11,9 @@
 }
 
 .content-page{
+  flex: 1;
+  display: flex;
   padding: 1rem;
-  
 }
 
 .top-part{
